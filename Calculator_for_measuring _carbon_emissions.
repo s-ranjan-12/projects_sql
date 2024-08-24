@@ -1,0 +1,29 @@
+CREATE TABLE buildings (
+    building_id INT AUTO_INCREMENT PRIMARY KEY,
+    type VARCHAR(50),
+    size DECIMAL(10,2),
+    location VARCHAR(255),
+    construction_materials TEXT,
+    architectural_features TEXT
+);
+
+CREATE TABLE emission_factors (
+    factor_id INT AUTO_INCREMENT PRIMARY KEY,
+    feature VARCHAR(50),
+    value DECIMAL(10,4)
+);
+
+CREATE TABLE climatic_zones (
+    zone_id INT AUTO_INCREMENT PRIMARY KEY,
+    zone_name VARCHAR(50),
+    impact DECIMAL(10,4)
+);
+
+CREATE TABLE calculations (
+    calculation_id INT AUTO_INCREMENT PRIMARY KEY,
+    building_id INT,
+    energy_consumption DECIMAL(10,2),
+    carbon_emissions DECIMAL(10,2),
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (building_id) REFERENCES buildings(building_id)
+);
